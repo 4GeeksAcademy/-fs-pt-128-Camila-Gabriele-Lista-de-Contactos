@@ -10,7 +10,7 @@ export const getContacts = async (dispatch) => {
     dispatch({ type: "set_contacts", payload: data.contacts })
 }
 
-const createAgenda = async () => {
+export const createAgenda = async () => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila`, {
         method: "POST",
     })
@@ -18,3 +18,12 @@ const createAgenda = async () => {
         console.log("Agenda Creada");
     }
 }
+
+export const deleteContact = async (id) => {
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${id}`, {
+        method: "DELETE",
+    })
+    if(response.ok) getContacts()
+}
+
+
