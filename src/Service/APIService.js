@@ -19,11 +19,38 @@ export const createAgenda = async () => {
     }
 }
 
-export const deleteContact = async (id) => {
+export const deleteContact = async (id, dispatch) => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${id}`, {
         method: "DELETE",
     })
-    if(response.ok) getContacts()
+    if(response.ok) getContacts(dispatch)
 }
 
+export const editContacts = async (contact) =>{
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${contact.id}`,{
 
+        method: "PUT",
+        body: JSON.stringify(contact),
+        headers: {
+            "Content-Typer": "application/json"
+        }
+    })
+    const data = await response.json()
+    console.log(data);
+}
+export const addContact = async (contact, dispatch) =>{
+    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts`,{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(contact)
+    })
+
+    if(!response.ok){
+        alert("ERROR AL CREAR CONTACTO")
+        return
+    } 
+    const data = await response.json()
+    dispatch({ type: "add_contact", payload: data})
+}

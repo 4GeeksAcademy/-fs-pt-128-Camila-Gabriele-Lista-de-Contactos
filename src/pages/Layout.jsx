@@ -13,3 +13,5 @@ export const Layout = () => {
         </ScrollToTop>
     )
 }
+
+//el outlet viene del routes: va a ser todo aquello que tengo dentro de esa ruta (en el componente routes)
