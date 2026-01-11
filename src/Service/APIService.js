@@ -26,31 +26,31 @@ export const deleteContact = async (id, dispatch) => {
     if(response.ok) getContacts(dispatch)
 }
 
-export const editContacts = async (contact) =>{
-    const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${contact.id}`,{
+// export const editContacts = async (contact) =>{
+//     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${contact.id}`,{
 
-        method: "PUT",
-        body: JSON.stringify(contact),
-        headers: {
-            "Content-Typer": "application/json"
-        }
-    })
-    const data = await response.json()
-    console.log(data);
-}
+//         method: "PUT",
+//         body: JSON.stringify(contact),
+//         headers: {
+//             "Content-Typer": "application/json"
+//         }
+//     })
+//     const data = await response.json()
+//     console.log(data);
+// }
 export const addContact = async (contact, dispatch) =>{
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts`,{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(contact)
+        body: JSON.stringify(contact, dispatch)
     })
-
-    if(!response.ok){
-        alert("ERROR AL CREAR CONTACTO")
-        return
-    } 
-    const data = await response.json()
-    dispatch({ type: "add_contact", payload: data})
 }
+//     if(!response.ok){
+//         alert("ERROR AL CREAR CONTACTO")
+//         return
+//     } 
+//     const data = await response.json()
+//     dispatch({ type: "add_contact", payload: data})
+// }

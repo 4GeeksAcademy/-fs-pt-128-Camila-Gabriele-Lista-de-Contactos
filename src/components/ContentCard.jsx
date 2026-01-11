@@ -3,12 +3,12 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { addContact, deleteContact, getContacts } from "../Service/APIService.js";
 
 
-export const ContentCard = (contact) => {
+export const ContentCard = ({contact}) => {
 
     const { store, dispatch } = useGlobalReducer()
-    useEffect(() => {
-        getContacts(dispatch)
-    }, [])
+    // useEffect(() => {
+    //     getContacts(dispatch)
+    // }, [])
 
     // const [contact, setContact] = useState({
     //     name: "Agustin",

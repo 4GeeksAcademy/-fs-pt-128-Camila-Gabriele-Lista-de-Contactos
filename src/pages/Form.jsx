@@ -3,21 +3,21 @@ import { useState } from "react";
 
 export const Form = () => {
 // const { store, dispatch } = useGlobalReducer()
-    const [contact, setContact] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        address: ""
-    })
-    console.log(contact);
+    // const [contact, setContact] = useState({
+    //     name: "",
+    //     email: "",
+    //     phone: "",
+    //     address: ""
+    // })
+    // console.log(contact);
 
-    const handleInputChange = (e) =>{
-        setContact({
-            ...contact,
-            [e.target.name]: e.target.value
+    // const handleInputChange = (e) =>{
+    //     setContact({
+    //         ...contact,
+    //         [e.target.name]: e.target.value
 
-        })
-    }
+    //     })
+    // }
 
 
     return (
