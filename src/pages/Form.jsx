@@ -1,17 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { editContacts } from "../Service/APIService";
+import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
-export const Form = () => {
-// const { store, dispatch } = useGlobalReducer()
-    // const [contact, setContact] = useState({
-    //     name: "",
-    //     email: "",
-    //     phone: "",
-    //     address: ""
-    // })
-    // console.log(contact);
 
-    const handleInputChange = (e) =>{
+export const Form = ({ title, button }) => {
+
+    const { store, dispatch } = useGlobalReducer()
+
+    const { id } = useParams()
+
+
+    const [contact, setContact] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: ""
+    })
+    console.log(contact);
+    const [isEditing, setIsEditing] = useState(false);
+
+    const [alert, setAlert] = useState(false);
+
+    const handleInputChange = (e) => {
         setContact({
             ...contact,
             [e.target.name]: e.target.value
@@ -19,59 +31,97 @@ export const Form = () => {
         })
     }
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!contact.name || !contact.email || !contact.phone || !contact.address) {
+            setAlert(true);
+            setTimeout(() => setAlert(false), 2000);
+            return;
+        }
+        if (isEditing) {
+            editContacts(contact, dispatch)
+        }
+    }
+
+    const findContact = () =>{
+        const contactFind = store.contacts.find(contact =>{return contact.id === Number(id)})
+        console.log(contactFind);
+        setContact(contactFind)
+        
+    }
+
+    useEffect(() => {
+        if (id) {
+            console.log("Estoy editando");
+            setIsEditing(true)
+            findContact()
+        } else {
+            console.log("Estoy agregando un nuevo contacto");
+            setIsEditing(false)
+        }
+    }, [])
 
     return (
         <>
             <div className="card align-self-center m-auto" style={{ width: "1200px" }}>
                 <div>
-                    <h1 className="text-center mt-3"><strong>Add a new contact</strong></h1>
-                    <form>
+                    <h1 className="text-center mt-3"><strong>{title}</strong></h1>
+                    <form onSubmit={handleSubmit}>
+                        {alert && (
+                            <div className="alert alert warning" role="alert">
+                                All fields are required
+                            </div>
+                        )}
                         <div className="m-auto p-3">
-                            <label for="exampleInputName" classNameName="form-label d-flex justify-content-start align-item-start">Full Name</label>
-                            <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Full Name"
-                            value={contact.name} 
-                            onChange={handleInputChange}
+                            <label for="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Full Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Full name"
+                                name="name"
+                                value={contact.name}
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div className="m-auto p-3">
                             <label for="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Email</label>
-                            <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Enter Email" 
-                            value={contact.email}
-                            onChange={handleInputChange}
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter Email"
+                                name="email"
+                                value={contact.email}
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div className="m-auto p-3">
                             <label for="exampleInputPhone" className="form-label d-flex justify-content-start align-item-start ">Phone</label>
-                            <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Enter Phone" v
-                            value={contact.phone}
-                            onChange={handleInputChange}
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter Phone" 
+                                name="phone"
+                                value={contact.phone}
+                                onChange={handleInputChange}
                             />
                         </div>
                         <div className="m-auto p-3">
                             <label for="exampleInputAddress" className="form-label d-flex justify-content-start align-item-start ">Address</label>
-                            <input 
-                            type="text" 
-                            className="form-control" 
-                            placeholder="Enter Address" 
-                            value={contact.address}
-                            onChange={handleInputChange}
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Enter Address"
+                                name="address"
+                                value={contact.address}
+                                onChange={handleInputChange}
                             />
                         </div>
                     </form>
-                        <div classNameName="d-flex justify-content-center align-item-center">
-                            <button type="submit" className="btn btn-primary">Save</button>
-                        </div>
+                    <div className="d-flex justify-content-center mb-3">
+                        <button type="button" className="btn btn-outline-primary col-2">{button}</button>
+                    </div>
                 </div>
             </div>
         </>
-    )
-}
+    );
+};

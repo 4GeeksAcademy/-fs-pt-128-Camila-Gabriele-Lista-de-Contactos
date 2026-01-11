@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import rigoImageUrl from "../assets/img/rigo-baby.jpg";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { addContact, deleteContact, getContacts } from "../Service/APIService.js";
-import { Form } from "./Form.jsx";
 import { ContentCard } from "../components/ContentCard.jsx";
+import { Link } from "react-router-dom";
 
 
 export const Home = () => {
@@ -23,9 +22,9 @@ export const Home = () => {
 				}
 			</div>
 			<div className="d-flex justify-content-center">
-
-				<button className="btn btn-outline-primary mt-3" onClick={addContact}> Create Contact </button>
-
+				<Link to="/add">
+					<button className="btn btn-outline-primary mt-3" onClick={addContact}> Create Contact </button>
+				</Link>
 			</div >
 		</>
 	);

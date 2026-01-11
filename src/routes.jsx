@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { Form } from "./pages/Form";
+import { ContentCard } from "./components/ContentCard";
 
 export const router = createBrowserRouter(
     createRoutesFromElements(
@@ -35,6 +36,8 @@ export const router = createBrowserRouter(
         <Route path= "/" element={<Home />} />
         <Route path="/single/:theId" element={ <Single />} />  {/* Dynamic route for single items */}
         <Route path="/demo" element={<Demo />} />  
+        <Route path="/add/" element={<Form  button={"Add Contact"} title={"Add new contact"} />} />  
+        <Route path="/edit/:id" element={<Form button={"Save Contact"} title={"Edit contact"} />} />
       </Route>
     )
 );

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { addContact, deleteContact, getContacts } from "../Service/APIService.js";
+import { Link } from "react-router-dom";
 
 
 export const ContentCard = ({ contact }) => {
@@ -42,9 +43,11 @@ export const ContentCard = ({ contact }) => {
                                     </div>
                                 </div>
                                 <div className="">
-                                    <button className="btn">
-                                        <i className="fa-solid fa-pencil"></i>
-                                    </button>
+                                    <Link to={`/edit/${contact.id}`}>
+                                        <button className="btn">
+                                            <i className="fa-solid fa-pencil"></i>
+                                        </button>
+                                    </Link>
                                     <button
                                         className="btn"
                                         type="button"
