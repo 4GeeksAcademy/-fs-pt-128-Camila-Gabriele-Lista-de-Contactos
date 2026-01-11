@@ -11,13 +11,13 @@ export const Form = () => {
     // })
     // console.log(contact);
 
-    // const handleInputChange = (e) =>{
-    //     setContact({
-    //         ...contact,
-    //         [e.target.name]: e.target.value
+    const handleInputChange = (e) =>{
+        setContact({
+            ...contact,
+            [e.target.name]: e.target.value
 
-    //     })
-    // }
+        })
+    }
 
 
     return (

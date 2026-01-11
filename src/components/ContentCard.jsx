@@ -3,7 +3,7 @@ import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { addContact, deleteContact, getContacts } from "../Service/APIService.js";
 
 
-export const ContentCard = ({contact}) => {
+export const ContentCard = ({ contact }) => {
 
     const { store, dispatch } = useGlobalReducer()
     // useEffect(() => {
@@ -42,17 +42,102 @@ export const ContentCard = ({contact}) => {
                                     </div>
                                 </div>
                                 <div className="">
-                                    {/* <link to={`/edit/${contact.id}`}> */}
-                                    <button className="btn" ><i className="fa-solid fa-pencil"></i></button>
-                                    {/* </link> */}
-                                    <button className="btn" onClick={() => deleteContact(contact.id, dispatch)}><i className="fa-solid fa-trash"></i></button>
+                                    <button className="btn">
+                                        <i className="fa-solid fa-pencil"></i>
+                                    </button>
+                                    <button
+                                        className="btn"
+                                        type="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target={`#deleteModal-${contact.id}`}
+                                    >
+                                        <i className="fa-solid fa-trash"></i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     }
+
+                </div>
+                <div className="modal fade" id={`deleteModal-${contact.id}`} tabIndex="-1" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title">Confirm deletion</h5>
+                                <button
+                                    type="button"
+                                    className="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                >
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <p>Are you sure you want to delete <strong>{contact.name}</strong>?</p>
+                            </div>
+                            <div className="modal-footer">
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Cancel
+                                </button>
+                                <button
+                                    type="button"
+                                    className="btn btn-danger"
+                                    data-bs-dismiss="modal"
+                                    onClick={() => deleteContact(contact.id, dispatch)}
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-           
         </>
     )
 }
+
+
+
+
+
+
+//                       
+
+
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+
+//             {/* Estructura del Modal (Fuera de la card para evitar problemas de capas/z-index) */}
+//             <div className="modal fade" id={`deleteModal-${contact.id}`} tabIndex="-1" aria-hidden="true">
+//                 <div className="modal-dialog">
+//                     <div className="modal-content">
+//                         <div className="modal-header">
+//                             <h5 className="modal-title">Confirmar borrado</h5>
+//                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//                         </div>
+//                         <div className="modal-body">
+//                             <p>Are you sure you want to delete <strong>{contact.name}</strong>?</p>
+//                         </div>
+//                         <div className="modal-footer">
+//                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+//                             <button
+//                                 type="button"
+//                                 className="btn btn-danger"
+//                                 data-bs-dismiss="modal"
+//                                 onClick={() => deleteContact(contact.id, dispatch)}
+//                             >
+//                                 Delete
+//                             </button>
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// };
