@@ -23,7 +23,7 @@ export const Home = () => {
 			</div>
 			<div className="d-flex justify-content-center">
 				<Link to="/add">
-					<button className="btn btn-outline-primary mt-3" onClick={addContact}> Create Contact </button>
+					<button className="btn btn-dark mt-3" onClick={addContact}> Create Contact </button>
 				</Link>
 			</div >
 		</>

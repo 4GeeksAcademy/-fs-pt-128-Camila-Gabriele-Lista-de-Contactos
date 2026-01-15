@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { editContacts } from "../Service/APIService";
+import { useNavigate, useParams } from "react-router-dom";
+import { addContact, editContacts } from "../Service/APIService";
 import useGlobalReducer from "../hooks/useGlobalReducer";
 
 
@@ -10,7 +10,7 @@ export const Form = ({ title, button }) => {
     const { store, dispatch } = useGlobalReducer()
 
     const { id } = useParams()
-
+    const navigate = useNavigate()
 
     const [contact, setContact] = useState({
         name: "",
@@ -39,15 +39,17 @@ export const Form = ({ title, button }) => {
             return;
         }
         if (isEditing) {
-            editContacts(contact, dispatch)
+            editContacts(contact, dispatch, navigate)
+        } else{
+            addContact(contact, dispatch, navigate);
         }
     }
 
-    const findContact = () =>{
-        const contactFind = store.contacts.find(contact =>{return contact.id === Number(id)})
+    const findContact = () => {
+        const contactFind = store.contacts.find(contact => { return contact.id === Number(id) })
         console.log(contactFind);
         setContact(contactFind)
-        
+
     }
 
     useEffect(() => {
@@ -99,7 +101,7 @@ export const Form = ({ title, button }) => {
                             <input
                                 type="text"
                                 className="form-control"
-                                placeholder="Enter Phone" 
+                                placeholder="Enter Phone"
                                 name="phone"
                                 value={contact.phone}
                                 onChange={handleInputChange}
@@ -116,10 +118,10 @@ export const Form = ({ title, button }) => {
                                 onChange={handleInputChange}
                             />
                         </div>
+                        <div className="d-flex justify-content-center mb-3">
+                            <button type="submit" className="btn btn-outline-primary col-2" onChange={handleInputChange}>{button}</button>
+                        </div>
                     </form>
-                    <div className="d-flex justify-content-center mb-3">
-                        <button type="button" className="btn btn-outline-primary col-2">{button}</button>
-                    </div>
                 </div>
             </div>
         </>

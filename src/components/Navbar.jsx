@@ -19,17 +19,16 @@ export const Navbar = () => {
 	// 	})
 	// }
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button className="btn btn-primary">Create Contact</button>
-					</Link>
-				</div>
+		<>
+			<div className="container mb-5">
+				<nav className="navbar navbar-expand-lg bg-body-tertiary">
+					<div className="container-fluid">
+						{/* <Link to="/"> */}
+						<a className="navbar-brand" href="#"> My Contacts</a>
+						{/* </Link> */}
+					</div>
+				</nav>
 			</div>
-		</nav>
+		</>
 	);
 };

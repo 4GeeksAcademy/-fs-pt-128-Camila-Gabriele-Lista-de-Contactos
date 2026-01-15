@@ -26,7 +26,7 @@ export const deleteContact = async (id, dispatch) => {
     if (response.ok) getContacts(dispatch)
 }
 
-export const editContacts = async (contact) => {
+export const editContacts = async (contact, navigate) => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts/${contact.id}`, {
 
         method: "PUT",
@@ -37,8 +37,9 @@ export const editContacts = async (contact) => {
     })
     const data = await response.json()
     console.log(data);
+    navigate("/");
 }
-export const addContact = async (contact, dispatch) => {
+export const addContact = async (contact, dispatch, navigate) => {
     const response = await fetch(`https://playground.4geeks.com/contact/agendas/Camila/contacts`, {
         method: "POST",
         headers: {
@@ -46,6 +47,8 @@ export const addContact = async (contact, dispatch) => {
         },
         body: JSON.stringify(contact, dispatch)
     })
+    dispatch({ type: "add_contact", payload: data.contacts })
+    navigate("/");
 
     if (!response.ok) {
         alert("ERROR AL CREAR CONTACTO")
@@ -54,3 +57,6 @@ export const addContact = async (contact, dispatch) => {
     const data = await response.json()
     dispatch({ type: "add_contact", payload: data })
 }
+
+
+//para ver con patricia: no me anda el navigate y no me crea el contacto, ni edita y guarda
