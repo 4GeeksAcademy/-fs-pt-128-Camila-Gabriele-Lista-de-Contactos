@@ -18,7 +18,7 @@ export const Form = ({ title, button }) => {
         phone: "",
         address: ""
     })
-    console.log(contact);
+    // console.log(contact);
     const [isEditing, setIsEditing] = useState(false);
 
     const [alert, setAlert] = useState(false);
@@ -31,7 +31,7 @@ export const Form = ({ title, button }) => {
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (!contact.name || !contact.email || !contact.phone || !contact.address) {
             setAlert(true);
@@ -39,15 +39,15 @@ export const Form = ({ title, button }) => {
             return;
         }
         if (isEditing) {
-            editContacts(contact, dispatch, navigate)
+           await editContacts(contact, dispatch, navigate)
         } else{
-            addContact(contact, dispatch, navigate);
+           await addContact(contact, dispatch, navigate);
         }
     }
 
     const findContact = () => {
         const contactFind = store.contacts.find(contact => { return contact.id === Number(id) })
-        console.log(contactFind);
+        // console.log(contactFind);
         setContact(contactFind)
 
     }
@@ -75,7 +75,7 @@ export const Form = ({ title, button }) => {
                             </div>
                         )}
                         <div className="m-auto p-3">
-                            <label for="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Full Name</label>
+                            <label htmlFor="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Full Name</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -86,7 +86,7 @@ export const Form = ({ title, button }) => {
                             />
                         </div>
                         <div className="m-auto p-3">
-                            <label for="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Email</label>
+                            <label htmlFor="exampleInputEmail" className="form-label d-flex justify-content-start align-item-start ">Email</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -97,7 +97,7 @@ export const Form = ({ title, button }) => {
                             />
                         </div>
                         <div className="m-auto p-3">
-                            <label for="exampleInputPhone" className="form-label d-flex justify-content-start align-item-start ">Phone</label>
+                            <label htmlFor="exampleInputPhone" className="form-label d-flex justify-content-start align-item-start ">Phone</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -108,7 +108,7 @@ export const Form = ({ title, button }) => {
                             />
                         </div>
                         <div className="m-auto p-3">
-                            <label for="exampleInputAddress" className="form-label d-flex justify-content-start align-item-start ">Address</label>
+                            <label htmlFor="exampleInputAddress" className="form-label d-flex justify-content-start align-item-start ">Address</label>
                             <input
                                 type="text"
                                 className="form-control"
