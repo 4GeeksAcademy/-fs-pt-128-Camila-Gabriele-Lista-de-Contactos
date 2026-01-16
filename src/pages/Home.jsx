@@ -16,7 +16,7 @@ export const Home = () => {
 		<>
 			<div className="container">
 				{
-					store.contacts.map(contact => (
+					store.contacts?.map(contact => (
 						<ContentCard contact={contact} key={contact.id} />
 					))
 				}

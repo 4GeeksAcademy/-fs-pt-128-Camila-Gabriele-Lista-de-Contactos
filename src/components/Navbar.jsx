@@ -21,7 +21,7 @@ export const Navbar = () => {
 	return (
 		<>
 			<div className="container mb-5">
-				<nav className="navbar navbar-expand-lg bg-body-tertiary">
+				<nav className="navbar navbar-expand-lg bg-body-tertiary ">
 					<div className="container-fluid">
 						{/* <Link to="/"> */}
 						<a className="navbar-brand" href="#"> My Contacts</a>
