@@ -70,7 +70,7 @@ export const Form = ({ title, button }) => {
                     <h1 className="text-center mt-3"><strong>{title}</strong></h1>
                     <form onSubmit={handleSubmit}>
                         {alert && (
-                            <div className="alert alert warning" role="alert">
+                            <div className="alert alert-danger" role="alert">
                                 All fields are required
                             </div>
                         )}
@@ -119,7 +119,11 @@ export const Form = ({ title, button }) => {
                             />
                         </div>
                         <div className="d-flex justify-content-center mb-3">
-                            <button type="submit" className="btn btn-outline-primary col-2" onChange={handleInputChange}>{button}</button>
+                            <button 
+                            type="submit" 
+                            className="btn btn-outline-primary col-2" 
+                            onChange={handleInputChange}>{button}
+                            </button>
                         </div>
                     </form>
                 </div>
